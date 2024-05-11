@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.12)
 
-project(example-headers)
+project(learn-headers)
 
-add_library(example-headers INTERFACE
-        example.h)
-target_include_directories(example-headers INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+add_library(learn-headers INTERFACE
+        learn.h)
+target_include_directories(learn-headers INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
