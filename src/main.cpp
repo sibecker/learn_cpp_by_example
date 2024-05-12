@@ -1,19 +1,30 @@
 #include "learn.h"
 
-#include <iostream>
-#include <vector>
+#include <ranges>
+#include <string>
 
-void generate_triangle()
+using namespace std::string_literals;
+
+void show_view(std::ostream& stream, std::vector<std::vector<int>> const& triangle)
 {
-    std::vector<int> data{1};
-    for(auto number : data)
-    {
-        std::cout << number << ' ';
+    if (!triangle.empty()) {
+        std::string spaces(triangle.back().size(), ' ');
+        for (auto const& row: triangle) {
+            if (!spaces.empty())
+                spaces.resize(spaces.size() - 1);
+            stream << spaces;
+            auto const odds = row | std::views::transform([](int x){
+                return x % 2 ? '*' : ' ';
+            });
+            for(auto const data : odds) {
+                stream << data << ' ';
+            }
+            stream << '\n';
+        }
     }
-    std::cout << '\n';
 }
 
 int main()
 {
-    generate_triangle();
+    show_view(std::cout, generate_triangle(34))
 }
