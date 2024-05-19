@@ -1,6 +1,6 @@
-#include <catch2/catch_test_macros.hpp>
+#include "catch2/catch_test_macros.hpp"
 
-#include "learn.h"
+#include "triangle.h"
 #include <algorithm>
 #include <numeric>
 #include <ranges>

@@ -1,6 +1,7 @@
-#include "learn.h"
+#include "triangle.h"
 
 #include <format>
+#include <ranges>
 
 std::vector<int> get_next_row(std::vector<int> const& last_row)
 {
@@ -42,4 +43,23 @@ std::ostream& operator<<(std::ostream& stream, std::vector<std::vector<int>> con
         }
     }
     return stream;
+}
+
+void show_view(std::ostream& stream, std::vector<std::vector<int>> const& triangle)
+{
+    if (!triangle.empty()) {
+        std::string spaces(triangle.back().size(), ' ');
+        for (auto const& row: triangle) {
+            if (!spaces.empty())
+                spaces.resize(spaces.size() - 1);
+            stream << spaces;
+            auto const odds = row | std::views::transform([](int x){
+                return x % 2 ? '*' : ' ';
+            });
+            for(auto const data : odds) {
+                stream << data << ' ';
+            }
+            stream << '\n';
+        }
+    }
 }
